@@ -1,5 +1,6 @@
 defmodule PolycodeApi.API.Language do
   use Maru.Router
+  require Logger
 
   namespace :language do
     namespace ":language" do
@@ -8,6 +9,7 @@ defmodule PolycodeApi.API.Language do
         requires :language, type: String
       end
       get do
+        Logger.info "Iniciado"
         json(conn, %{ lang: params[:language] })
       end
 
