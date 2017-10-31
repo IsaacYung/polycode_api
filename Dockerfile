@@ -1,4 +1,4 @@
-FROM elixir:1.5.1-slim
+FROM elixir:1.5.1
 
 RUN mkdir /polycode
 WORKDIR /polycode

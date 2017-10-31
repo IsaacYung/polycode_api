@@ -19,7 +19,8 @@ defmodule PolycodeApi.Mixfile do
         :maru,
         :poison,
         :ecto,
-        :mariaex
+        :poolboy,
+        :mongodb
       ],
       mod: {PolycodeApi, []}
     ]
@@ -29,7 +30,8 @@ defmodule PolycodeApi.Mixfile do
     [
       {:maru, "~> 0.12.1"},
       {:ecto, "~> 2.1.6"},
-      {:mariaex, "~> 0.8.3"},
+      {:mongodb, "~> 0.4.3"},
+      {:poolboy, "~> 1.5"},
       {:comeonin, "~> 4.0.0"},
       {:credo, "~> 0.8.4", only: [:dev, :test]},
       {:coverex, "~> 1.4", only: [:test, :dev]},

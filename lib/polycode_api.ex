@@ -26,10 +26,10 @@ defmodule PolycodeApi do
     import Supervisor.Spec, warn: false
 
     children_db = [
-      PolycodeApi.Repo
+      #PolycodeApi.Repo
     ]
 
-    opts_db = [strategy: :one_for_one, name: PolycodeApi.Database]
-    Supervisor.start_link(children_db, opts_db)
+    #opts_db = [strategy: :one_for_one, name: PolycodeApi.Database]
+    # Supervisor.start_link(children_db, opts_db)
   end
 end
