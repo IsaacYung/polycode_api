@@ -1,4 +1,7 @@
 defmodule PolycodeApi do
+  require Mongo
+  use Application
+
   @moduledoc """
   # The AlienCode Application
 
@@ -10,8 +13,6 @@ defmodule PolycodeApi do
   - Categories
   - Tags
   """
-
-  use Application
 
   @doc """
   Start application supervisor
@@ -25,11 +26,15 @@ defmodule PolycodeApi do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    children_db = [
-      #PolycodeApi.Repo
+    children = [
+      worker(Mongo, [[
+        name: :mongo,
+        database: Application.get_env(:mongodb, :database),
+        pool: DBConnection.Poolboy
+      ]])
     ]
 
-    #opts_db = [strategy: :one_for_one, name: PolycodeApi.Database]
-    # Supervisor.start_link(children_db, opts_db)
+    opts = [strategy: :one_for_one, name: PolycodeApi.Supervisor]
+    Supervisor.start_link(children, opts)
   end
 end

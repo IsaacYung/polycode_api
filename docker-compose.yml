@@ -6,7 +6,7 @@ services:
     volumes:
       - .:/polycode
     ports:
-      - "4000:3000"
+      - "4000:4000"
     links:
       - mongodb
     depends_on:

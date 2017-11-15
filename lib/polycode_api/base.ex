@@ -7,7 +7,7 @@ defmodule PolycodeApi.Base do
     json_decoder: Poison,
     parsers: [:urlencoded, :json, :multipart]
 
-  mount PolycodeApi.API.Language
+  mount PolycodeApi.API.Languages
 
   rescue_from :all do
     conn

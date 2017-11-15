@@ -14,7 +14,8 @@ defmodule PolycodeApi.Mixfile do
 
   def application do
     [
-      extra_applications: [
+      extra_applications:
+      (Mix.env == :dev && [:exsync] || []) ++ [
         :logger,
         :maru,
         :poison,
@@ -30,6 +31,7 @@ defmodule PolycodeApi.Mixfile do
     [
       {:maru, "~> 0.12.1"},
       {:ecto, "~> 2.1.6"},
+      {:exsync, "~> 0.2.1", only: :dev},
       {:mongodb, "~> 0.4.3"},
       {:poolboy, "~> 1.5"},
       {:comeonin, "~> 4.0.0"},
