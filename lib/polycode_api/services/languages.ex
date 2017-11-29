@@ -1,5 +1,5 @@
 defmodule PolycodeApi.Services.Languages do
-  use Application
+  import Application
   require Mongo
 
   def find(query, collection \\ Application.get_env(:mongodb, :collection_default)) do
@@ -7,7 +7,7 @@ defmodule PolycodeApi.Services.Languages do
       :mongo,
       collection,
       query,
-      limit: Application.get_env(:mongodb, :pool),
+      limit: get_env(:mongodb, :pool),
       pool: DBConnection.Poolboy
     )
   end

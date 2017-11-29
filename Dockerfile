@@ -14,7 +14,7 @@ RUN set -xe \
 	&& rm elixir-src.tar.gz \
 	&& cd /usr/local/src/elixir \
 	&& make install clean
-  
+
 EXPOSE 4000
 ENV PORT=4000
 

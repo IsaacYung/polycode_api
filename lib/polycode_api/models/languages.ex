@@ -7,7 +7,7 @@ defmodule PolycodeApi.Models.Languages do
   end
 
   def find(language) do
-    List.first Languages.find(%{languageId: language})
+    List.first Languages.find(%{language: language})
     |> Enum.map &(&1 |> Map.delete("_id"))
   end
 end

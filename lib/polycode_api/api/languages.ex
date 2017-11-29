@@ -1,7 +1,6 @@
 defmodule PolycodeApi.API.Languages do
   use Maru.Router
   alias PolycodeApi.Models.Languages
-  require IEx
   require Logger
 
   namespace :languages do

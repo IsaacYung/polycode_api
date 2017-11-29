@@ -1,6 +1,6 @@
 defmodule PolycodeApi do
   require Mongo
-  use Application
+  import Application
 
   @moduledoc """
   # The AlienCode Application
@@ -29,7 +29,10 @@ defmodule PolycodeApi do
     children = [
       worker(Mongo, [[
         name: :mongo,
-        database: Application.get_env(:mongodb, :database),
+        database: get_env(:mongodb, :database),
+        hostname: get_env(:mongodb, :hostname),
+        username: get_env(:mongodb, :username),
+        password: get_env(:mongodb, :password),
         pool: DBConnection.Poolboy
       ]])
     ]
