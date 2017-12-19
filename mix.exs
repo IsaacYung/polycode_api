@@ -29,6 +29,7 @@ defmodule PolycodeApi.Mixfile do
 
   defp deps do
     [
+      {:cors_plug, "~> 1.5"},
       {:maru, "~> 0.12.1"},
       {:ecto, "~> 2.1.6"},
       {:exsync, "~> 0.2.1", only: :dev},

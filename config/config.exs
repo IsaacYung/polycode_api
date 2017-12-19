@@ -6,4 +6,4 @@ config :polycode_api,
         ecto_repos: [PolycodeApi.Repo]
 
 config :maru, PolycodeApi.Base,
-        http: [port: 3000]
+        http: [port: 3001]

@@ -2,6 +2,7 @@ defmodule PolycodeApi.Base do
   use Maru.Router
 
   plug Plug.Logger
+  plug CORSPlug
   plug Plug.Parsers,
     pass: ["*/*"],
     json_decoder: Poison,
