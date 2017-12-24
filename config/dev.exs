@@ -12,7 +12,5 @@ config :polycode_api, PolycodeApi.Repo,
 config :mongodb,
   database: "polycode",
   collection_default: "languages",
-  username: "polycode_api",
-  password: "1YOHlJmFXRrVMJuy",
-  hostname: "ds259855.mlab.com:59855",
+  hostname: "localhost:27017",
   pool: 20

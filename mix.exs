@@ -21,7 +21,8 @@ defmodule PolycodeApi.Mixfile do
         :poison,
         :ecto,
         :poolboy,
-        :mongodb
+        :mongodb,
+        :cachex
       ],
       mod: {PolycodeApi, []}
     ]
@@ -32,14 +33,16 @@ defmodule PolycodeApi.Mixfile do
       {:cors_plug, "~> 1.5"},
       {:maru, "~> 0.12.1"},
       {:ecto, "~> 2.1.6"},
-      {:exsync, "~> 0.2.1", only: :dev},
       {:mongodb, "~> 0.4.3"},
       {:poolboy, "~> 1.5"},
       {:comeonin, "~> 4.0.0"},
-      {:credo, "~> 0.8.4", only: [:dev, :test]},
-      {:coverex, "~> 1.4", only: [:test, :dev]},
+      {:earmark, "~> 1.2.3"},
+      {:cachex, "~> 2.1"},
       {:ex_doc, "~> 0.16.2", only: :dev, runtime: false},
-      {:earmark, "~> 1.2.3"}
+      {:exsync, "~> 0.2.1", only: :dev},
+      {:coverex, "~> 1.4", only: [:test, :dev]},
+      {:credo, "~> 0.8.4", only: [:dev, :test]},
+      {:mock, "~> 0.3.1", only: :test}
     ]
   end
 end

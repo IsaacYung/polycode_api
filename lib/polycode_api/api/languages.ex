@@ -17,7 +17,7 @@ defmodule PolycodeApi.API.Languages do
         requires :language, type: String
       end
       get do
-        IO.inspect conn
+        IO.inspect Languages.find(params[:language])
         json(conn, Languages.find(params[:language]))
       end
     end

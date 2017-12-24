@@ -12,4 +12,14 @@ defmodule PolycodeApi.Services.Languages do
       projection: projection
     )
   end
+
+  def fast_find(query_key, prefix) do
+    case find_from_cache(query_key, prefix) do
+      {:ok, result} -> result
+      {:missing, projection} -> find(%{language: query_key}, projection)
+    end
+  end
+
+  defp find_from_cache(query_key, prefix) do
+  end
 end

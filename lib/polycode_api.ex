@@ -34,7 +34,8 @@ defmodule PolycodeApi do
         username: get_env(:mongodb, :username),
         password: get_env(:mongodb, :password),
         pool: DBConnection.Poolboy
-      ]])
+      ]]),
+      worker(Cachex, [ :my_cache, [], [] ])
     ]
 
     opts = [strategy: :one_for_one, name: PolycodeApi.Supervisor]
