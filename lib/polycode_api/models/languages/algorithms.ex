@@ -10,7 +10,8 @@ defmodule PolycodeApi.Models.Languages.Algorithms do
   List all algorithms recordeds
 
   ### Example
-       iex> all
+       iex> import PolycodeApi.Models.Languages.Algorithms
+       iex> all()
        {
         "ola"
        }
@@ -24,6 +25,7 @@ defmodule PolycodeApi.Models.Languages.Algorithms do
   Find the algorithm by language name
 
   ### Example
+       iex> import PolycodeApi.Models.Languages.Algorithms
        iex> find("java")
        {
         "ola"
