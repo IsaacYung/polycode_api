@@ -13,6 +13,6 @@ defmodule PolycodeApi.Base do
   rescue_from :all do
     conn
     |> put_status(500)
-    |> text("Server Error")
+    |> text("Internal Server Error")
   end
 end

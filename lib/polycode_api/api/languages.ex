@@ -13,15 +13,18 @@ defmodule PolycodeApi.API.Languages do
 
     route_param :language, type: String do
       desc "Retrieve a language datas"
+      params do
+        requires :language, type: String
+      end
       get do
+        IO.inspect conn
         json(conn, Languages.find(params[:language]))
       end
     end
 
     namespace :syntaxes do
-      get do
-        json(conn, Synataxes.all)
-      end
+      desc "Retrieve list of the languages"
+      get :all do json(conn, Synataxes.all) end
 
       route_param :language, type: String do
         desc "Retrieve a language datas"
@@ -32,7 +35,8 @@ defmodule PolycodeApi.API.Languages do
     end
 
     namespace :characteristics do
-      get do json(conn, Characteristics.all) end
+      desc "Retrieve list of the languages"
+      get :all do json(conn, Characteristics.all) end
 
       route_param :language, type: String do
         desc "Retrieve a language datas"
@@ -43,7 +47,8 @@ defmodule PolycodeApi.API.Languages do
     end
 
     namespace :algorithms do
-      get do json(conn, Algorithms.all) end
+      desc "Retrieve list of the languages"
+      get :all do json(conn, Algorithms.all) end
 
       route_param :language, type: String do
         desc "Retrieve a language datas"
@@ -54,7 +59,8 @@ defmodule PolycodeApi.API.Languages do
     end
 
     namespace :integrations do
-      get do json(conn, Integrations.all) end
+      desc "Retrieve list of the languages"
+      get :all do json(conn, Integrations.all) end
 
       route_param :language, type: String do
         desc "Retrieve a language datas"

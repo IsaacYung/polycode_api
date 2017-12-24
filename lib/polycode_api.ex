@@ -3,23 +3,23 @@ defmodule PolycodeApi do
   import Application
 
   @moduledoc """
-  # The AlienCode Application
+  # PolyCode API
 
-  This application is a API for blog backend
+  This application is a API for PolyCode Site
 
   ### Resources
-  - Posts
-  - Authors
-  - Categories
-  - Tags
+  - Languages
+    - Algorithms
+    - Characteristics
+    - Integrations
+    - Synataxes
   """
 
   @doc """
   Start application supervisor
 
   children:
-  AlienCode.Repo like supervisor,
-  AlienCode.API.Router like a worker
+  Mongo like a worker
 
   the strategy is one for one, for each process down create a new process
   """
