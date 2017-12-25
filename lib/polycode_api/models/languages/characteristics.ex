@@ -27,6 +27,6 @@ defmodule PolycodeApi.Models.Languages.Characteristics do
       2
   """
   def find(language) do
-    List.first Languages.fast_find(language)
+    List.first Languages.fast_find(language, %{characteristics: 1, language: 1})
   end
 end

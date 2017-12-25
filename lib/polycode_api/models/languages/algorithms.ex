@@ -27,6 +27,6 @@ defmodule PolycodeApi.Models.Languages.Algorithms do
       2
   """
   def find(language) do
-    List.first Languages.fast_find(language)
+    List.first Languages.fast_find(language, %{algorithms: 1, language: 1})
   end
 end

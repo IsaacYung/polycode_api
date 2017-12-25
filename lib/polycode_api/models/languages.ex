@@ -2,7 +2,7 @@ defmodule PolycodeApi.Models.Languages do
   alias PolycodeApi.Services.Languages
 
   def all do
-    Languages.find(%{})
+    Languages.fast_find(:all)
   end
 
   def find(language) do
