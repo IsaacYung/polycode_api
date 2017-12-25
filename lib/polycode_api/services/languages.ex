@@ -3,21 +3,23 @@ defmodule PolycodeApi.Services.Languages do
   import Application
   require Mongo
   require Cachex
-  require IEx
+  require Logger
 
   def fast_find(query_key, projection \\ %{}) do
     cond do
-      query_key == :all -> search_query = %{}
+      query_key == "all" -> search_query = %{}
       true              -> search_query = %{language: query_key}
     end
 
     case Languages.find_from_cache(query_key, projection) do
       {:ok, result} ->
-        IO.puts "Cache +++++++++++++++>"
+        Logger.info query_key <> " resource from Cache"
+
         result |> Enum.map &(&1 |> Map.delete("_id"))
       {:missing, projection, key} ->
-        IO.puts "Mongo +++++++++++++++>"
         result = Languages.find(search_query, projection) |> Enum.map &(&1 |> Map.delete("_id"))
+        Logger.info query_key <> " resource from Mongo - cached on " <> key
+
         Cachex.set(:cache, key, result)
         result
     end

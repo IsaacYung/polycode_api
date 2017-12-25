@@ -15,7 +15,7 @@ defmodule PolycodeApi.Models.Languages.Characteristics do
       2
   """
   def all do
-    Languages.fast_find(:all, %{characteristics: 1, language: 1})
+    Languages.fast_find("all", %{characteristics: 1, language: 1})
   end
 
   @doc ~S"""

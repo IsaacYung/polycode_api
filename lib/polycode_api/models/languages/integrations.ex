@@ -1,5 +1,6 @@
 defmodule PolycodeApi.Models.Languages.Integrations do
   alias PolycodeApi.Services.Languages
+  require IEx
   @moduledoc ~S"""
   # Integrations Model
 
@@ -15,7 +16,7 @@ defmodule PolycodeApi.Models.Languages.Integrations do
       2
   """
   def all do
-    Languages.fast_find(:all, %{integrations: 1, language: 1})
+    Languages.fast_find("all", %{integrations: 1, language: 1})
   end
 
   @doc ~S"""

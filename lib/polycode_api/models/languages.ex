@@ -1,8 +1,9 @@
 defmodule PolycodeApi.Models.Languages do
   alias PolycodeApi.Services.Languages
+  require IEx
 
   def all do
-    Languages.fast_find(:all)
+    Languages.fast_find("all")
   end
 
   def find(language) do

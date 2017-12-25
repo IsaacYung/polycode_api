@@ -15,7 +15,7 @@ defmodule PolycodeApi.Models.Languages.Synataxes do
       2
   """
   def all do
-    Languages.fast_find(:all, %{syntaxes: 1, language: 1})
+    Languages.fast_find("all", %{syntaxes: 1, language: 1})
   end
 
   @doc ~S"""
