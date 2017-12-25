@@ -15,8 +15,7 @@ defmodule PolycodeApi.Models.Languages.Algorithms do
       2
   """
   def all do
-    Languages.find(%{}, %{algorithms: 1, language: 1})
-    |> Enum.map(&(&1 |> Map.delete("_id")))
+    Languages.fast_find(:all, %{algorithms: 1, language: 1})
   end
 
   @doc ~S"""
@@ -28,7 +27,6 @@ defmodule PolycodeApi.Models.Languages.Algorithms do
       2
   """
   def find(language) do
-    List.first Languages.find(%{language: language}, %{algorithms: 1})
-    |> Enum.map(&(&1 |> Map.delete("_id")))
+    List.first Languages.fast_find(language)
   end
 end

@@ -1,8 +1,29 @@
 defmodule PolycodeApi.Services.Languages do
+  alias PolycodeApi.Services.Languages
   import Application
   require Mongo
+  require Cachex
+  require IEx
 
-  def find(query, projection \\ %{}, collection \\ Application.get_env(:mongodb, :collection_default)) do
+  def fast_find(query_key, projection \\ %{}) do
+    cond do
+      query_key == :all -> search_query = %{}
+      true              -> search_query = %{language: query_key}
+    end
+
+    case Languages.find_from_cache(query_key, projection) do
+      {:ok, result} ->
+        IO.puts "Cache +++++++++++++++>"
+        result |> Enum.map &(&1 |> Map.delete("_id"))
+      {:missing, projection, key} ->
+        IO.puts "Mongo +++++++++++++++>"
+        result = Languages.find(search_query, projection) |> Enum.map &(&1 |> Map.delete("_id"))
+        Cachex.set(:cache, key, result)
+        result
+    end
+  end
+
+  def find(query, projection \\ %{}, collection \\ get_env(:mongodb, :collection_default)) do
     Mongo.find(
       :mongo,
       collection,
@@ -13,13 +34,25 @@ defmodule PolycodeApi.Services.Languages do
     )
   end
 
-  def fast_find(query_key, prefix) do
-    case find_from_cache(query_key, prefix) do
-      {:ok, result} -> result
-      {:missing, projection} -> find(%{language: query_key}, projection)
+  def find_from_cache(query_key, projection) do
+    projectionList = Languages.atomize(projection)
+    key = List.flatten([projectionList, query_key]) |> Enum.join("_")
+
+    case Cachex.get(:cache, key) do
+      {:ok, value} ->
+        case value do
+          nil -> {:missing, projection}
+          _   -> {:ok, value}
+        end
+
+      {:error, error_message} -> {:missing, projection, key}
+      {:missing, nil} -> {:missing, projection, key}
     end
   end
 
-  defp find_from_cache(query_key, prefix) do
+  def atomize(map) do
+    for {key, val} <- map, into: [] do
+      key
+    end
   end
 end

@@ -35,7 +35,9 @@ defmodule PolycodeApi do
         password: get_env(:mongodb, :password),
         pool: DBConnection.Poolboy
       ]]),
-      worker(Cachex, [ :my_cache, [], [] ])
+      worker(Cachex, [ :cache, [
+        expiration: [default: :timer.minutes(1)]
+      ]])
     ]
 
     opts = [strategy: :one_for_one, name: PolycodeApi.Supervisor]

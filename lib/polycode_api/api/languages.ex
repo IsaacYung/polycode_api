@@ -5,6 +5,7 @@ defmodule PolycodeApi.API.Languages do
   alias Languages.Characteristics
   alias Languages.Integrations
   alias Languages.Algorithms
+  require IEx
   require Logger
 
   namespace :languages do
@@ -13,12 +14,10 @@ defmodule PolycodeApi.API.Languages do
 
     route_param :language, type: String do
       desc "Retrieve a language datas"
-      params do
-        requires :language, type: String
-      end
       get do
-        IO.inspect Languages.find(params[:language])
-        json(conn, Languages.find(params[:language]))
+        response = Languages.find(params[:language])
+        IO.inspect response
+        json(conn, response)
       end
     end
 
